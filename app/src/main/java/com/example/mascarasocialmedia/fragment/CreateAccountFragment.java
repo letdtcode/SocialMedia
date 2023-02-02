@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.mascarasocialmedia.FragmentReplacerActivity;
 import com.example.mascarasocialmedia.MainActivity;
 import com.example.mascarasocialmedia.R;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -39,7 +40,7 @@ public class CreateAccountFragment extends Fragment {
     private Button signUpBtn;
     private FirebaseAuth auth;
 
-    public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    public static final String EMAIL_REGEX = "^(.+)@(.+)$";
     public CreateAccountFragment() {
         // Required empty public constructor
     }
@@ -103,6 +104,15 @@ public class CreateAccountFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
+                            user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(getContext(), "Email verification link send", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                             uploadUser(user,name,email);
                         } else {
                             progressBar.setVisibility(View.GONE);
