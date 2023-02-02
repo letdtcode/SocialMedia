@@ -15,6 +15,13 @@
         android:theme="@style/Theme.MascaraSocialMedia"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FragmentReplacerActivity"
             android:exported="false">
             <meta-data

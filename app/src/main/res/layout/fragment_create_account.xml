@@ -18,6 +18,7 @@
         android:layout_marginLeft="16dp"/>
 
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -59,6 +60,14 @@
             android:hint="Confirm Password"
             android:padding="12dp"></EditText>
     </LinearLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ll1"
+        android:visibility="gone"
+        android:layout_above="@id/signUpBtn"/>
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
